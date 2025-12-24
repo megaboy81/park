@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8">
-  <title>내 첫 홈페이지</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉCLAIR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importing 'Kaushan Script' for the logo/title and 'Outfit' for modern interface text -->
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>🎉 Netlify 배포 성공</h1>
-  <p>이 화면이 보이면 홈페이지가 정상적으로 열리고 있는 상태입니다.</p>
+    <div class="background-animation"></div>
+
+    <main class="container">
+        <header class="header">
+            <h1 class="brand-title">ÉCLAIR</h1>
+            <p class="subtitle">Gateway to Experiences</p>
+        </header>
+
+        <nav class="link-grid">
+            <a href="#" class="card-link">
+                <div class="card-content">
+                    <span class="card-icon">🏠</span>
+                    <h2>Main Home</h2>
+                    <p>공식 홈페이지 바로가기</p>
+                </div>
+                <div class="card-arrow">➝</div>
+            </a>
+
+            <a href="#" class="card-link">
+                <div class="card-content">
+                    <span class="card-icon">🎨</span>
+                    <h2>Portfolio</h2>
+                    <p>작업물 아카이브</p>
+                </div>
+                <div class="card-arrow">➝</div>
+            </a>
+
+            <a href="#" class="card-link">
+                <div class="card-content">
+                    <span class="card-icon">📝</span>
+                    <h2>Blog</h2>
+                    <p>개발 및 일상 블로그</p>
+                </div>
+                <div class="card-arrow">➝</div>
+            </a>
+
+            <a href="#" class="card-link">
+                <div class="card-content">
+                    <span class="card-icon">✉️</span>
+                    <h2>Contact</h2>
+                    <p>문의하기</p>
+                </div>
+                <div class="card-arrow">➝</div>
+            </a>
+        </nav>
+
+        <footer class="footer">
+            <p>&copy; 2024 ÉCLAIR. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

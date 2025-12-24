@@ -1,0 +1,272 @@
+:root {
+    --bg-color: #0f1115;
+    --text-color: #ffffff;
+    --accent-color: #ff9f43;
+    /* Warm accent for Eclair vibe */
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-hover: rgba(255, 255, 255, 0.1);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --font-heading: 'Kaushan Script', cursive;
+    --font-body: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Dynamic Background */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 50%, #1a2a3a 0%, #0f1115 100%);
+    overflow: hidden;
+}
+
+.background-animation::before,
+.background-animation::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.background-animation::before {
+    background: #4a69bd;
+    top: -10%;
+    left: -10%;
+}
+
+.background-animation::after {
+    background: #ff6b6b;
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(100px, 100px) rotate(20deg);
+    }
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.brand-title {
+    font-family: var(--font-heading);
+    font-size: 6rem;
+    font-weight: 400;
+    /* Kaushan has its own weight */
+    color: var(--text-color);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* Link Grid */
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Card Styles */
+.card-link {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--text-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    /* Initial state for animation sequence */
+    opacity: 0;
+    transform: translateY(30px);
+
+    /* For 3D Tilt */
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.card-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+            rgba(255, 255, 255, 0.1),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.card-link:hover {
+    background: var(--card-hover);
+    border-color: rgba(255, 255, 255, 0.3);
+    /* Transform handled by JS for tilt */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-link:hover::before {
+    opacity: 1;
+    /* Show the spotlight effect */
+}
+
+.card-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.card-content p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.card-arrow {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    color: var(--accent-color);
+}
+
+.card-link:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Footer */
+.footer {
+    margin-top: 5rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    animation: fadeInUp 1s ease-out 0.5s backwards;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cursor Glow */
+.cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(29, 161, 242, 0.15), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: screen;
+    transition: width 0.2s, height 0.2s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 4rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .link-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Disable complex hover effects on touch devices for performance */
+    .card-link:hover {
+        transform: none !important;
+    }
+}
